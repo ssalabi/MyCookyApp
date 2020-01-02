@@ -1,5 +1,6 @@
-package com.mycookyapp;
+package com.mycookyapp.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -13,6 +14,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.mycookyapp.Names;
+import com.mycookyapp.R;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -21,7 +24,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RecipeesFragment.RecipeClickListener {
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -64,5 +67,12 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public void onClick(String id) {
+        Intent myIntent = new Intent(MainActivity.this, RecipeDetailsActivity.class);
+        myIntent.putExtra(Names.RECIPE_ID, id);
+        MainActivity.this.startActivity(myIntent);
     }
 }

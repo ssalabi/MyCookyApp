@@ -6,19 +6,22 @@ import java.util.List;
 
 public class DAO {
 
+    private DataMock mock;
+
     public DAO() {
+        mock = new DataMock();
     }
 
-    public UserData getUserData(String id){
-        return new UserData("aaa@gmail", "user0", "female", "0000$");
+    public UserData getUserData(String id) {
+        return mock.getUserData(id);
     }
 
-    public List<Recipe> getRecipes(){
-        List recipes = new ArrayList();
-        recipes.add(new Recipe("name0", "url0", "id0"));
-        recipes.add(new Recipe("name1", "url1", "id1"));
-        recipes.add(new Recipe("name2", "url2", "id2"));
+    public List<Recipe> getRecipes() {
+        return mock.getRecipes();
+    }
 
-        return recipes;
+
+    public List<String> getIngredients(String id) {
+        return mock.getIngredients(id);
     }
 }

@@ -1,4 +1,4 @@
-package com.mycookyapp;
+package com.mycookyapp.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mycookyapp.R;
 import com.mycookyapp.data.Recipe;
 import com.squareup.picasso.Picasso;
 
@@ -17,12 +18,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class RecipeAdapter extends RecyclerView.Adapter {
 
+    private RecipeClickListener listener;
     private Context context;
     private List<Recipe> recipes;
 
-    public RecipeAdapter(List<Recipe> recipes, Context context) {
+    public RecipeAdapter(List<Recipe> recipes, Context context, RecipeClickListener listener) {
         this.recipes = recipes;
         this.context = context;
+        this.listener = listener;
     }
 
     @NonNull
@@ -35,15 +38,24 @@ public class RecipeAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        String name = recipes.get(position).getName();
-        String id = recipes.get(position).getId();
-        ((MyViewHolder)holder).name.setText(name);
-        ((MyViewHolder)holder).id.setText(id);
-        ImageView image = ((MyViewHolder)holder).image;
+        Recipe recipe = recipes.get(position);
+        String name = recipe.getName();
+        final String id = recipe.getId();
 
-      /*  Picasso.with(context).load("http://cdn.journaldev.com/wp-content/uploads/2016/11/android-image-picker-project-structure.png").into();
-        Picasso.get().load()
-                .into(image);*/
+        MyViewHolder myHolder = ((MyViewHolder) holder);
+        myHolder.name.setText(name);
+        myHolder.id.setText(id);
+        ImageView image = myHolder.image;
+
+        Picasso.get().load(recipes.get(position).getUrl())
+                .into(image);
+
+        myHolder.layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onClick(id);
+            }
+        });
     }
 
     @Override
@@ -53,6 +65,7 @@ public class RecipeAdapter extends RecyclerView.Adapter {
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
+        private View layout;
         private ImageView image;
         public TextView name;
         public TextView id;
@@ -63,7 +76,12 @@ public class RecipeAdapter extends RecyclerView.Adapter {
             name = itemView.findViewById(R.id.recipe_name);
             id = itemView.findViewById(R.id.recipe_id);
             image = itemView.findViewById(R.id.recipe_image);
+            layout = itemView.findViewById(R.id.recipe_layout);
 
         }
+    }
+
+    public interface RecipeClickListener{
+        public void onClick(String id);
     }
 }

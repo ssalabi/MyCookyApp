@@ -1,7 +1,5 @@
 package com.mycookyapp.ui;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,18 +9,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.mycookyapp.R;
-import com.mycookyapp.RecipeAdapter;
+import com.mycookyapp.adapters.RecipeAdapter;
 import com.mycookyapp.data.DAO;
-import com.mycookyapp.data.UserData;
 
 import java.util.List;
 //import androidx.fragment.app.Fragment;
 
 public class RecipeesFragment extends Fragment {
 
+    private  RecipeClickListener listener;
     private  RecyclerView recycler;
     private DAO dao;
 
@@ -30,8 +27,12 @@ public class RecipeesFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static RecipeesFragment newInstance() {
-        RecipeesFragment fragment = new RecipeesFragment();
+    public RecipeesFragment(RecipeClickListener listener) {
+        this.listener = listener;
+    }
+
+    public static RecipeesFragment newInstance(RecipeClickListener listener) {
+        RecipeesFragment fragment = new RecipeesFragment(listener);
 
         return fragment;
     }
@@ -45,10 +46,20 @@ public class RecipeesFragment extends Fragment {
         recycler = (RecyclerView)view.findViewById(R.id.recycler);
         dao = new DAO();
         List recipes = dao.getRecipes();
-        RecipeAdapter adapter = new RecipeAdapter(recipes, getContext());
+        RecipeAdapter adapter = new RecipeAdapter(recipes, getContext(), new RecipeAdapter.RecipeClickListener() {
+            @Override
+            public void onClick(String id) {
+//                listener.onClick(id);
+                ((RecipeClickListener)getActivity()).onClick(id);
+            }
+        });
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
         return view;
+    }
+
+    public interface RecipeClickListener{
+        public void onClick(String id);
     }
 }
