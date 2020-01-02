@@ -46,7 +46,7 @@ public class AccountFragment extends Fragment {
         username = view.findViewById(R.id.text_user_name);
         gender = view.findViewById(R.id.text_gender);
 
-        dao = new DAO();
+        dao = DAO.getInstance();
 
         UserData userData = dao.getUserData("0");
 

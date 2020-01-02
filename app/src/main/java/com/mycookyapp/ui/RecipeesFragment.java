@@ -44,7 +44,7 @@ public class RecipeesFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_recipees, container, false);
 
         recycler = (RecyclerView)view.findViewById(R.id.recycler);
-        dao = new DAO();
+        dao = DAO.getInstance();
         List recipes = dao.getRecipes();
         RecipeAdapter adapter = new RecipeAdapter(recipes, getContext(), new RecipeAdapter.RecipeClickListener() {
             @Override

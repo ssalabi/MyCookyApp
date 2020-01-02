@@ -35,4 +35,8 @@ public class DataMock {
         }
         return null;
     }
+
+    public String getImageUrl(String id) {
+        return findWithId(id).getUrl();
+    }
 }
