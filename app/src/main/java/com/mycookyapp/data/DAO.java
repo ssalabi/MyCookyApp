@@ -45,4 +45,8 @@ public class DAO {
     public String getImageUrl(String id) {
         return mock.getImageUrl(id);
     }
+
+    public String getNameRecipe(String id) {
+        return mock.getNameRecipe(id);
+    }
 }

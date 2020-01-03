@@ -39,4 +39,8 @@ public class DataMock {
     public String getImageUrl(String id) {
         return findWithId(id).getUrl();
     }
+
+    public String getNameRecipe(String id) {
+        return findWithId(id).getName();
+    }
 }

@@ -19,30 +19,50 @@
                 android:id="@+id/details_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="50dp"
                 app:srcCompat="@drawable/ic_launcher_foreground" />
 
             <TextView
                 android:id="@+id/details_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="75dp" />
+
+            <TextView
+                android:id="@+id/ingredients_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ingredients:"
+                android:layout_marginBottom="50dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/details_ingredients"
                 android:layout_width="300dp"
+                android:layout_marginBottom="50dp"
                 android:layout_height="wrap_content">
 
             </androidx.recyclerview.widget.RecyclerView>
 
+            <TextView
+                android:id="@+id/preparation_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:text="Preparation:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/details_preparation"
                 android:layout_width="300dp"
+                android:layout_marginBottom="50dp"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="1000dp"
-
                 android:background="#EB0D0D"
                 android:text="TextView"
           />

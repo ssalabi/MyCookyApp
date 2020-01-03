@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.mycookyapp.Names;
 import com.mycookyapp.R;
@@ -19,6 +20,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     private RecyclerView ingredients;
     private DAO dao;
     private ImageView image;
+    private TextView name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,13 +31,14 @@ public class RecipeDetailsActivity extends AppCompatActivity {
 
         ingredients = findViewById(R.id.details_ingredients);
         image = findViewById(R.id.details_image);
+        name = findViewById(R.id.details_name);
 
         dao = DAO.getInstance();
 
         IngridiensAdapter ingredientsAdapter = new IngridiensAdapter(dao.getIngredients(id), getApplicationContext());
         ingredients.setAdapter(ingredientsAdapter);
         ingredients.setLayoutManager(new LinearLayoutManager(this));
-
+        name.setText(dao.getNameRecipe(id));
         Picasso.get().load(dao.getImageUrl(id))
                 .into(image);
     }
