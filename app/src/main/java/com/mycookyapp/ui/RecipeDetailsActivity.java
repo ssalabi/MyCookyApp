@@ -38,7 +38,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         IngridiensAdapter ingredientsAdapter = new IngridiensAdapter(dao.getIngredients(id), getApplicationContext());
         ingredients.setAdapter(ingredientsAdapter);
         ingredients.setLayoutManager(new LinearLayoutManager(this));
-        name.setText(dao.getNameRecipe(id));
+        name.setText(dao.getNameRecipe(id));//added that
         Picasso.get().load(dao.getImageUrl(id))
                 .into(image);
     }
