@@ -21,7 +21,19 @@ public class AzureHelper {
         task.execute();
     }
 
+    public void getRecipeDetails(String id){
+        GetRecipeDetailsTask task = new GetRecipeDetailsTask(id, new GetRecipeDetailsTask.RecipeDetailsListener() {
+            @Override
+            public void onReady(Recipe recipe) {
+                listener.onRecipeDetailsReady(recipe);
+            }
+        });
+        task.execute();
+    }
+
    public interface AzureListener{
        public void onRecipesReady(List<Recipe> recipes);
+       public void onRecipeDetailsReady(Recipe recipe);
+
    }
 }

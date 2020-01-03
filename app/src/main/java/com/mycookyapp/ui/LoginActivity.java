@@ -57,6 +57,11 @@ public class LoginActivity extends AppCompatActivity {
                     public void onRecipesReady(List<Recipe> recipes) {
 
                     }
+
+                    @Override
+                    public void onRecipeDetailsReady(Recipe recipe) {
+
+                    }
                 });
             }
         });

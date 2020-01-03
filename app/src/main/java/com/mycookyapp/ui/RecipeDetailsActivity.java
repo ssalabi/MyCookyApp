@@ -35,18 +35,36 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         image = findViewById(R.id.details_image);
         name = findViewById(R.id.details_name);
 
-        dao = DAO.getInstance(new DAO.DAOListener() {
-            @Override
-            public void onRecipesReady(List<Recipe> recipes) {
+        dao = DAO.getInstance(new DAOListener());
 
-            }
-        });
+        List<String> ingredians = dao.getIngredients(id, new DAOListener());
 
-        IngridiensAdapter ingredientsAdapter = new IngridiensAdapter(dao.getIngredients(id), getApplicationContext());
-        ingredients.setAdapter(ingredientsAdapter);
-        ingredients.setLayoutManager(new LinearLayoutManager(this));
+        if(ingredians != null){
+            loadRecyclerIngridiens(ingredians);
+        }
+
         name.setText(dao.getNameRecipe(id));//added that
         Picasso.get().load(dao.getImageUrl(id))
                 .into(image);
+    }
+
+    private void loadRecyclerIngridiens(List<String> ingredians) {
+        IngridiensAdapter ingredientsAdapter = new IngridiensAdapter(ingredians, getApplicationContext());
+        ingredients.setAdapter(ingredientsAdapter);
+        ingredients.setLayoutManager(new LinearLayoutManager(this));
+
+    }
+
+    class DAOListener implements DAO.DAOListener{
+
+        @Override
+        public void onRecipesReady(List<Recipe> recipes) {
+
+        }
+
+        @Override
+        public void onRecipeDetailsReady(Recipe recipe) {
+            loadRecyclerIngridiens(recipe.getIngrediansList());
+        }
     }
 }

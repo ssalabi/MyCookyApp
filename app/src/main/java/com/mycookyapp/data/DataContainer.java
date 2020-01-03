@@ -44,4 +44,10 @@ public class DataContainer {
     public String getNameRecipe(String id) {
         return findWithId(id).getName();
     }
+
+    public void updateRecipe(Recipe recipe) {
+        Recipe myRecipe = findWithId(recipe.getId());
+        myRecipe.setIngredians(recipe.getIngredians());
+        myRecipe.setPreperation(recipe.getPreperation());
+    }
 }

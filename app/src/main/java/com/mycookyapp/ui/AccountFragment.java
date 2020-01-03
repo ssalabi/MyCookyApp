@@ -52,6 +52,11 @@ public class AccountFragment extends Fragment {
             public void onRecipesReady(List<Recipe> recipes) {
 
             }
+
+            @Override
+            public void onRecipeDetailsReady(Recipe recipe) {
+
+            }
         });
 
         UserData userData = dao.getUserData("0");

@@ -13,6 +13,7 @@ public class DAO {
     private static DAO daoInstance = null;
     private DAOAzureListener listener;
     private DataContainer container;
+    private DAOListener daoDetailsListener;
 
     private DAO(DAOListener daoListener) {
         mock = new DataMock();
@@ -44,8 +45,15 @@ public class DAO {
     }
 
 
-    public List<String> getIngredients(String id) {
-        return mock.getIngredients(id);
+    public List<String> getIngredients(String id, DAOListener daoDetailsListener) {
+//        return mock.getIngredients(id);
+        this.daoDetailsListener = daoDetailsListener;
+        List<String> ingredians = container.getIngredients(id);
+        if(ingredians == null){
+            helper.getRecipeDetails(id);
+        }
+
+        return ingredians;
     }
 
     public String getImageUrl(String id) {
@@ -56,6 +64,8 @@ public class DAO {
         return mock.getNameRecipe(id);
     }
 
+
+
     public class DAOAzureListener implements AzureHelper.AzureListener {
 
         @Override
@@ -63,9 +73,16 @@ public class DAO {
             container.setRecipes(recipes);
             daoListener.onRecipesReady(recipes);
         }
+
+        @Override
+        public void onRecipeDetailsReady(Recipe recipe) {
+            container.updateRecipe(recipe);
+            daoDetailsListener.onRecipeDetailsReady(recipe);
+        }
     }
 
     public interface DAOListener{
-        public void onRecipesReady(List<Recipe> recipes);
+        void onRecipesReady(List<Recipe> recipes);
+        void onRecipeDetailsReady(Recipe recipe);
     }
 }

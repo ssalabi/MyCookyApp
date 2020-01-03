@@ -50,6 +50,11 @@ public class RecipeesFragment extends Fragment {
             public void onRecipesReady(List<Recipe> recipes) {
                 loadRecycler(recipes);
             }
+
+            @Override
+            public void onRecipeDetailsReady(Recipe recipe) {
+
+            }
         });
 
         List recipes = dao.getRecipes();
