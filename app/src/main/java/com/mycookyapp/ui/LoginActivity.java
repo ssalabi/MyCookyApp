@@ -8,7 +8,11 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.mycookyapp.R;
+import com.mycookyapp.data.DAO;
+import com.mycookyapp.data.Recipe;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -25,6 +29,9 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
                 Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
                 LoginActivity.this.startActivity(myIntent);
             }
@@ -39,6 +46,18 @@ public class LoginActivity extends AppCompatActivity {
                         .into(testImage);
 
 
+            }
+        });
+
+        findViewById(R.id.network).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DAO dao = DAO.getInstance(new DAO.DAOListener() {
+                    @Override
+                    public void onRecipesReady(List<Recipe> recipes) {
+
+                    }
+                });
             }
         });
     }

@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,7 +12,10 @@ import com.mycookyapp.Names;
 import com.mycookyapp.R;
 import com.mycookyapp.adapters.IngridiensAdapter;
 import com.mycookyapp.data.DAO;
+import com.mycookyapp.data.Recipe;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 public class RecipeDetailsActivity extends AppCompatActivity {
 
@@ -33,7 +35,12 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         image = findViewById(R.id.details_image);
         name = findViewById(R.id.details_name);
 
-        dao = DAO.getInstance();
+        dao = DAO.getInstance(new DAO.DAOListener() {
+            @Override
+            public void onRecipesReady(List<Recipe> recipes) {
+
+            }
+        });
 
         IngridiensAdapter ingredientsAdapter = new IngridiensAdapter(dao.getIngredients(id), getApplicationContext());
         ingredients.setAdapter(ingredientsAdapter);

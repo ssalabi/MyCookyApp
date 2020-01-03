@@ -1,26 +1,31 @@
 package com.mycookyapp.data;
 
 
-import com.mycookyapp.AzureHelper;
+import com.mycookyapp.web.AzureHelper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DAO {
 
+    private DAOListener daoListener;
     private AzureHelper helper;
     private DataMock mock;
     private static DAO daoInstance = null;
+    private DAOAzureListener listener;
+    private DataContainer container;
 
-    private DAO() {
+    private DAO(DAOListener daoListener) {
         mock = new DataMock();
-        helper = new AzureHelper();
+        listener = new DAOAzureListener();
+        this.daoListener = daoListener;
+        helper = new AzureHelper(listener);
+        container = new DataContainer();
     }
 
-    public static DAO getInstance()
+    public static DAO getInstance(DAOListener daoListener)
     {
         if (daoInstance == null)
-            daoInstance = new DAO();
+            daoInstance = new DAO(daoListener);
 
         return daoInstance;
     }
@@ -34,7 +39,8 @@ public class DAO {
     }
 
     public List<Recipe> getRecipes() {
-        return mock.getRecipes();
+//        return mock.getRecipes();
+        return container.getRecipes();
     }
 
 
@@ -48,5 +54,18 @@ public class DAO {
 
     public String getNameRecipe(String id) {
         return mock.getNameRecipe(id);
+    }
+
+    public class DAOAzureListener implements AzureHelper.AzureListener {
+
+        @Override
+        public void onRecipesReady(List<Recipe> recipes) {
+            container.setRecipes(recipes);
+            daoListener.onRecipesReady(recipes);
+        }
+    }
+
+    public interface DAOListener{
+        public void onRecipesReady(List<Recipe> recipes);
     }
 }

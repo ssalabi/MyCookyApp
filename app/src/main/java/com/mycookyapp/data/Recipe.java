@@ -6,20 +6,20 @@ import java.util.List;
 
 public class Recipe {
     private String name;
-    private String url;
+    private String image;
     private String id;
     private String preperation;
     private String ingredians;
 
-    public Recipe(String name, String url, String id) {
+    public Recipe(String name, String image, String id) {
         this.name = name;
-        this.url = url;
+        this.image = image;
         this.id = id;
     }
 
-    public Recipe(String name, String url, String id, String preperation, String ingredians) {
+    public Recipe(String name, String image, String id, String preperation, String ingredians) {
         this.name = name;
-        this.url = url;
+        this.image = image;
         this.id = id;
         this.preperation = preperation;
         this.ingredians = ingredians;
@@ -33,12 +33,12 @@ public class Recipe {
         this.name = name;
     }
 
-    public String getUrl() {
-        return url;
+    public String getImage() {
+        return image;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getId() {

@@ -47,7 +47,7 @@ public class RecipeAdapter extends RecyclerView.Adapter {
         myHolder.id.setText(id);
         ImageView image = myHolder.image;
 
-        Picasso.get().load(recipes.get(position).getUrl())
+        Picasso.get().load(recipes.get(position).getImage())
                 .into(image);
 
         myHolder.layout.setOnClickListener(new View.OnClickListener() {

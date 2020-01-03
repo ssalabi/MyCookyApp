@@ -1,7 +1,5 @@
 package com.mycookyapp.ui;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,7 +11,10 @@ import android.widget.TextView;
 
 import com.mycookyapp.R;
 import com.mycookyapp.data.DAO;
+import com.mycookyapp.data.Recipe;
 import com.mycookyapp.data.UserData;
+
+import java.util.List;
 
 
 public class AccountFragment extends Fragment {
@@ -46,7 +47,12 @@ public class AccountFragment extends Fragment {
         username = view.findViewById(R.id.text_user_name);
         gender = view.findViewById(R.id.text_gender);
 
-        dao = DAO.getInstance();
+        dao = DAO.getInstance(new DAO.DAOListener() {
+            @Override
+            public void onRecipesReady(List<Recipe> recipes) {
+
+            }
+        });
 
         UserData userData = dao.getUserData("0");
 

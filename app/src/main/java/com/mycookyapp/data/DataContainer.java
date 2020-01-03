@@ -3,15 +3,16 @@ package com.mycookyapp.data;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataMock {
+public class DataContainer {
 
-    private ArrayList<Recipe> recipes;
+    private List<Recipe> recipes;
 
-    public DataMock() {
-        recipes = new ArrayList();
-        recipes.add(new Recipe("name0", "https://cdn.pixabay.com/photo/2017/09/01/00/16/png-2702697_960_720.png", "id0", "", "- 2 glasses of rice - 1 spoon of oil"));
-        recipes.add(new Recipe("name1", "https://cdn.pixabay.com/photo/2017/09/01/00/16/png-2702697_960_720.png", "id1", "", "- 2 glasses of rice - 1 spoon of oil"));
-        recipes.add(new Recipe("name2", "https://cdn.pixabay.com/photo/2017/09/01/00/16/png-2702697_960_720.png", "id2", "", "- 2 glasses of rice - 1 spoon of oil"));
+    public DataContainer(){
+
+    }
+
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes = recipes;
     }
 
     public UserData getUserData(String id){

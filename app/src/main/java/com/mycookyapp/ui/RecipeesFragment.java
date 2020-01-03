@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.mycookyapp.R;
 import com.mycookyapp.adapters.RecipeAdapter;
 import com.mycookyapp.data.DAO;
+import com.mycookyapp.data.Recipe;
 
 import java.util.List;
 //import androidx.fragment.app.Fragment;
@@ -44,19 +45,30 @@ public class RecipeesFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_recipees, container, false);
 
         recycler = (RecyclerView)view.findViewById(R.id.recycler);
-        dao = DAO.getInstance();
+        dao = DAO.getInstance(new DAO.DAOListener() {
+            @Override
+            public void onRecipesReady(List<Recipe> recipes) {
+                loadRecycler(recipes);
+            }
+        });
+
         List recipes = dao.getRecipes();
+        if(recipes != null){
+            loadRecycler(recipes);
+        }
+
+        return view;
+    }
+
+    private void loadRecycler(List recipes) {
         RecipeAdapter adapter = new RecipeAdapter(recipes, getContext(), new RecipeAdapter.RecipeClickListener() {
             @Override
             public void onClick(String id) {
-//                listener.onClick(id);
                 ((RecipeClickListener)getActivity()).onClick(id);
             }
         });
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        return view;
     }
 
     public interface RecipeClickListener{
