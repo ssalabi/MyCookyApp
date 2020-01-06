@@ -45,7 +45,9 @@ public class RecipeesFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_recipees, container, false);
 
         recycler = (RecyclerView)view.findViewById(R.id.recycler);
-        dao = DAO.getInstance(new DAO.DAOListener() {
+        dao = DAO.getInstance();
+
+        dao.getRecipes(new DAO.DAOListener() {
             @Override
             public void onRecipesReady(List<Recipe> recipes) {
                 loadRecycler(recipes);
@@ -55,12 +57,17 @@ public class RecipeesFragment extends Fragment {
             public void onRecipeDetailsReady(Recipe recipe) {
 
             }
-        });
 
-        List recipes = dao.getRecipes();
-        if(recipes != null){
-            loadRecycler(recipes);
-        }
+            @Override
+            public void onIngridiansReady(List<String> ingridians) {
+
+            }
+
+            @Override
+            public void onPreparationsReady(List<String> preparations) {
+
+            }
+        });
 
         return view;
     }

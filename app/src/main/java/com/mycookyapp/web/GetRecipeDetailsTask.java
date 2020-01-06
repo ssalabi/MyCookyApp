@@ -74,6 +74,6 @@ public class GetRecipeDetailsTask extends AsyncTask<String, String, String> {
     }
 
     public interface RecipeDetailsListener{
-        public void onReady (Recipe recipe);
+         void onReady (Recipe recipe);
     }
 }

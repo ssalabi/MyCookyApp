@@ -8,27 +8,29 @@ import java.util.List;
 public class DAO {
 
     private DAOListener daoListener;
-    private AzureHelper helper;
+    private AzureHelper azureHelper;
     private DataMock mock;
     private static DAO daoInstance = null;
-    private DAOAzureListener listener;
+    private AzureListener azureListener;
     private DataContainer container;
-    private DAOListener daoDetailsListener;
 
-    private DAO(DAOListener daoListener) {
+    private DAO() {
         mock = new DataMock();
-        listener = new DAOAzureListener();
-        this.daoListener = daoListener;
-        helper = new AzureHelper(listener);
+        azureListener = new AzureListener();
+        azureHelper = new AzureHelper();
         container = new DataContainer();
     }
 
-    public static DAO getInstance(DAOListener daoListener)
+    public static DAO getInstance()
     {
-        if (daoInstance == null)
-            daoInstance = new DAO(daoListener);
-
+        if (daoInstance == null){
+            daoInstance = new DAO();
+        }
         return daoInstance;
+    }
+
+    private void setDAOListener(DAOListener daoListener) {
+        this.daoListener = daoListener;
     }
 
     public static void eraseData(){
@@ -39,34 +41,46 @@ public class DAO {
         return mock.getUserData(id);
     }
 
-    public List<Recipe> getRecipes() {
+    public void getRecipes(DAOListener listener) {
 //        return mock.getRecipes();
-        return container.getRecipes();
+
+        this.daoListener = listener;
+
+        List<Recipe> recipes = container.getRecipes();
+        if (recipes != null){
+            listener.onRecipesReady(recipes);
+        } else {
+            azureHelper.getRecipes(azureListener);
+        }
+
     }
 
 
-    public List<String> getIngredients(String id, DAOListener daoDetailsListener) {
+    public void getIngredients(String id, DAOListener daoListener) {
 //        return mock.getIngredients(id);
-        this.daoDetailsListener = daoDetailsListener;
+        this.daoListener = daoListener;
         List<String> ingredians = container.getIngredients(id);
         if(ingredians == null){
-            helper.getRecipeDetails(id);
+            azureHelper.getRecipeDetails(azureListener, id);
+        } else {
+            daoListener.onIngridiansReady(ingredians);
         }
-
-        return ingredians;
     }
 
     public String getImageUrl(String id) {
-        return mock.getImageUrl(id);
+//        return mock.getImageUrl(id);
+        return container.getImageUrl(id);
+
     }
 
     public String getNameRecipe(String id) {
-        return mock.getNameRecipe(id);
+    //    return mock.getNameRecipe(id);
+        return container.getNameRecipe(id);
     }
 
 
 
-    public class DAOAzureListener implements AzureHelper.AzureListener {
+    public class AzureListener implements AzureHelper.AzureListener {
 
         @Override
         public void onRecipesReady(List<Recipe> recipes) {
@@ -77,12 +91,16 @@ public class DAO {
         @Override
         public void onRecipeDetailsReady(Recipe recipe) {
             container.updateRecipe(recipe);
-            daoDetailsListener.onRecipeDetailsReady(recipe);
+            daoListener.onIngridiansReady(recipe.getIngrediansList());
+            daoListener.onPreparationsReady(recipe.getPreparationList());
+
         }
     }
 
     public interface DAOListener{
         void onRecipesReady(List<Recipe> recipes);
         void onRecipeDetailsReady(Recipe recipe);
+        void onIngridiansReady(List<String> ingridians);
+        void onPreparationsReady(List<String> preparations);
     }
 }

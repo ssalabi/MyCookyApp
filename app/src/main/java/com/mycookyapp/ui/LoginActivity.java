@@ -52,17 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.network).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DAO dao = DAO.getInstance(new DAO.DAOListener() {
-                    @Override
-                    public void onRecipesReady(List<Recipe> recipes) {
-
-                    }
-
-                    @Override
-                    public void onRecipeDetailsReady(Recipe recipe) {
-
-                    }
-                });
+                DAO dao = DAO.getInstance();
             }
         });
     }

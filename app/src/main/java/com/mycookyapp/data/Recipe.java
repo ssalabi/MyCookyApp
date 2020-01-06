@@ -9,7 +9,7 @@ public class Recipe {
     private String image;
     private String id;
     private String preperation;
-    private String ingredians;
+    private String ingredients;
 
     public Recipe(String name, String image, String id) {
         this.name = name;
@@ -17,12 +17,12 @@ public class Recipe {
         this.id = id;
     }
 
-    public Recipe(String name, String image, String id, String preperation, String ingredians) {
+    public Recipe(String name, String image, String id, String preperation, String ingredients) {
         this.name = name;
         this.image = image;
         this.id = id;
         this.preperation = preperation;
-        this.ingredians = ingredians;
+        this.ingredients = ingredients;
     }
 
     public String getName() {
@@ -57,16 +57,16 @@ public class Recipe {
         this.preperation = preperation;
     }
 
-    public String getIngredians() {
-        return ingredians;
+    public String getIngredients() {
+        return ingredients;
     }
 
-    public void setIngredians(String ingredians) {
-        this.ingredians = ingredians;
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
     }
 
     public List<String> getIngrediansList(){
-        return strToList(ingredians);
+        return strToList(ingredients);
     }
 
     public List<String> getPreparationList(){
@@ -74,6 +74,9 @@ public class Recipe {
     }
 
     private List<String> strToList(String str) {
+        if(str == null){
+            return null;
+        }
         return new ArrayList<String>(Arrays.asList(str.split("-")));
     }
 }

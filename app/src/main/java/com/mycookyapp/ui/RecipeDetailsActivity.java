@@ -23,26 +23,28 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     private DAO dao;
     private ImageView image;
     private TextView name;
+    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_details);
 
-        String id = getIntent().getStringExtra(Names.RECIPE_ID);
+        id = getIntent().getStringExtra(Names.RECIPE_ID);
 
         ingredients = findViewById(R.id.details_ingredients);
         image = findViewById(R.id.details_image);
         name = findViewById(R.id.details_name);
 
-        dao = DAO.getInstance(new DAOListener());
+        dao = DAO.getInstance();
+//        dao.getIngredients()
 
-        List<String> ingredians = dao.getIngredients(id, new DAOListener());
+        dao.getIngredients(id, new DAOListener());
 
-        if(ingredians != null){
-            loadRecyclerIngridiens(ingredians);
-        }
+        loadNameAndImage(id);
+    }
 
+    private void loadNameAndImage(String id) {
         name.setText(dao.getNameRecipe(id));//added that
         Picasso.get().load(dao.getImageUrl(id))
                 .into(image);
@@ -64,7 +66,18 @@ public class RecipeDetailsActivity extends AppCompatActivity {
 
         @Override
         public void onRecipeDetailsReady(Recipe recipe) {
-            loadRecyclerIngridiens(recipe.getIngrediansList());
+    //        loadRecyclerIngridiens(recipe.getIngrediansList());
+
+        }
+
+        @Override
+        public void onIngridiansReady(List<String> ingridians) {
+            loadRecyclerIngridiens(ingridians);
+        }
+
+        @Override
+        public void onPreparationsReady(List<String> preparations) {
+
         }
     }
 }

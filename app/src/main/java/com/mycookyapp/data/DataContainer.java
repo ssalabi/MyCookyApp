@@ -1,6 +1,5 @@
 package com.mycookyapp.data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DataContainer {
@@ -47,7 +46,7 @@ public class DataContainer {
 
     public void updateRecipe(Recipe recipe) {
         Recipe myRecipe = findWithId(recipe.getId());
-        myRecipe.setIngredians(recipe.getIngredians());
+        myRecipe.setIngredients(recipe.getIngredients());
         myRecipe.setPreperation(recipe.getPreperation());
     }
 }

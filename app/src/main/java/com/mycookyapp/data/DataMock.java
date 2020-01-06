@@ -37,10 +37,18 @@ public class DataMock {
     }
 
     public String getImageUrl(String id) {
-        return findWithId(id).getImage();
+        Recipe recipe = findWithId(id);
+        if(recipe != null){
+            return findWithId(id).getImage();
+        }
+        return null;
     }
 
     public String getNameRecipe(String id) {
-        return findWithId(id).getName();
+        Recipe recipe = findWithId(id);
+        if(recipe != null){
+            return findWithId(id).getName();
+        }
+        return null;
     }
 }
