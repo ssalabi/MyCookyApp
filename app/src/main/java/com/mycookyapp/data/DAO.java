@@ -88,7 +88,10 @@ public class DAO {
         return container.getNameRecipe(id);
     }
 
-
+    public void sendStart(String id, DAOListener daoListener) {
+        this.daoListener = daoListener;
+        azureHelper.sendStart(id);
+    }
 
 
     public class AzureListener implements AzureHelper.AzureListener {
@@ -106,6 +109,11 @@ public class DAO {
             daoListener.onPreparationsReady(recipe.getPreparationList());
 
         }
+
+        @Override
+        public void onStartReady() {
+            daoListener.onStartReady();
+        }
     }
 
     public interface DAOListener{
@@ -113,5 +121,6 @@ public class DAO {
         void onRecipeDetailsReady(Recipe recipe);
         void onIngridiansReady(List<String> ingridians);
         void onPreparationsReady(List<String> preparations);
+        void onStartReady();
     }
 }

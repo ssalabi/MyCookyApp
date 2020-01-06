@@ -5,8 +5,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mycookyapp.Names;
 import com.mycookyapp.R;
@@ -26,6 +28,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
     private TextView name;
     private String id;
     private RecyclerView preparation;
+    private View start;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,7 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         preparation = findViewById(R.id.details_preparation);
         image = findViewById(R.id.details_image);
         name = findViewById(R.id.details_name);
+        start =findViewById(R.id.details_start);
 
         dao = DAO.getInstance();
 //        dao.getIngredients()
@@ -47,6 +51,13 @@ public class RecipeDetailsActivity extends AppCompatActivity {
 
 
         loadNameAndImage(id);
+
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dao.sendStart(id, new DAOListener());
+            }
+        });
     }
 
     private void loadNameAndImage(String id) {
@@ -88,6 +99,11 @@ public class RecipeDetailsActivity extends AppCompatActivity {
         @Override
         public void onPreparationsReady(List<String> preparations) {
             loadRecyclerPraparation(preparations);
+        }
+
+        @Override
+        public void onStartReady() {
+            Toast.makeText(getApplicationContext(), "started", Toast.LENGTH_LONG).show();
         }
     }
 

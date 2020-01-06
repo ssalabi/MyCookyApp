@@ -92,55 +92,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-//    @org.jetbrains.annotations.NotNull
-//    public  static String Getdata (String uri ){
-//
-//        BufferedReader reader = null;
-//
-//        try {
-//
-//            URL url = new URL(uri);
-//            HttpURLConnection con = null;
-//
-//            URL testUrlHttps = new URL(uri);
-//            if (testUrlHttps.getProtocol().toLowerCase().equals("https"))
-//            {
-//                trustAllHosts();
-//                HttpsURLConnection https = (HttpsURLConnection) url.openConnection();
-//                https.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
-//                con = https;
-//            } else
-//            {
-//                con = (HttpURLConnection) url.openConnection();
-//            }
-//
-//
-//            con.setReadTimeout(15000);
-//            con.setConnectTimeout(15000);
-//            StringBuilder sb = new StringBuilder();
-//            reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-//
-//            String line;
-//            while ((line = reader.readLine()) != null) {
-//                sb.append(line + "\n");
-//            }
-//
-//            return sb.toString();
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return "";
-//        } finally {
-//            if (reader != null) {
-//                try {
-//                    reader.close();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                    return "";
-//                }
-//            }
-//        }
-//    }
+
 
     private void userLogin() throws UnrecoverableKeyException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, CertificateException, IOException {
         //first getting the values

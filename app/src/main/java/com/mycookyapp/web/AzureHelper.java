@@ -37,9 +37,21 @@ public class AzureHelper {
         task.execute();
     }
 
-   public interface AzureListener{
-       public void onRecipesReady(List<Recipe> recipes);
-       public void onRecipeDetailsReady(Recipe recipe);
+    public void sendStart(String id) {
+        StartTask task = new StartTask(id, new StartTask.StartListener() {
+            @Override
+            public void onReady() {
+                listener.onStartReady();
+            }
+        });
+        task.execute();
+    }
 
-   }
+    public interface AzureListener{
+        void onRecipesReady(List<Recipe> recipes);
+        void onRecipeDetailsReady(Recipe recipe);
+        void onStartReady();
+
+
+    }
 }

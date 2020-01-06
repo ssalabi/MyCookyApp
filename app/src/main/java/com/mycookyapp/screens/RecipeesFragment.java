@@ -67,6 +67,11 @@ public class RecipeesFragment extends Fragment {
             public void onPreparationsReady(List<String> preparations) {
 
             }
+
+            @Override
+            public void onStartReady() {
+
+            }
         });
 
         return view;
