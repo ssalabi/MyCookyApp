@@ -1,4 +1,4 @@
-package com.mycookyapp.ui;
+package com.mycookyapp.screens;
 
 import android.os.Bundle;
 

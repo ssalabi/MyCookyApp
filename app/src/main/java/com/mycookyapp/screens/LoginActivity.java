@@ -1,4 +1,4 @@
-package com.mycookyapp.ui;
+package com.mycookyapp.screens;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,10 +9,7 @@ import android.widget.ImageView;
 
 import com.mycookyapp.R;
 import com.mycookyapp.data.DAO;
-import com.mycookyapp.data.Recipe;
 import com.squareup.picasso.Picasso;
-
-import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 

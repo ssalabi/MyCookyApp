@@ -1,7 +1,6 @@
 package com.mycookyapp.data;
 
 
-import com.mycookyapp.ui.RecipeDetailsActivity;
 import com.mycookyapp.web.AzureHelper;
 
 import java.util.List;

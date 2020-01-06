@@ -1,4 +1,4 @@
-package com.mycookyapp.ui;
+package com.mycookyapp.screens;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements RecipeesFragment.
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_profile, R.id.nav_recipes)
+                R.id.nav_profile, R.id.nav_recipes, R.id.nav_logout, R.id.nav_home)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

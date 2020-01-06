@@ -1,5 +1,6 @@
-package com.mycookyapp.ui;
+package com.mycookyapp.screens;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,10 +12,10 @@ import android.widget.TextView;
 
 import com.mycookyapp.R;
 import com.mycookyapp.data.DAO;
-import com.mycookyapp.data.Recipe;
 import com.mycookyapp.data.UserData;
-
-import java.util.List;
+import com.mycookyapp.login.LoginActivity;
+import com.mycookyapp.login.SharedPrefManager;
+import com.mycookyapp.login.User;
 
 
 public class AccountFragment extends Fragment {
@@ -54,6 +55,30 @@ public class AccountFragment extends Fragment {
         email.setText(userData.getEmail());
         username.setText(userData.getUserName());
         gender.setText(userData.getGender());
+
+        //////////////////////////////////////////////////////////////////////////////////////////////
+
+        //if the user is not logged in
+        //starting the login activity
+        if (!SharedPrefManager.getInstance(getContext()).isLoggedIn()) {
+            getActivity().finish();
+            startActivity(new Intent(getActivity(), LoginActivity.class));
+        }
+
+
+
+
+
+        //getting the current user
+        User user = SharedPrefManager.getInstance(getContext()).getUser();
+
+        //setting the values to the textviews
+        username.setText(user.getUsername());
+        email.setText(user.getEmail());
+        gender.setText(user.getGender());
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         return view;
     }
