@@ -8,7 +8,7 @@ public class Recipe {
     private String name;
     private String image;
     private String id;
-    private String preperation;
+    private String preparation_process;
     private String ingredients;
 
     public Recipe(String name, String image, String id) {
@@ -17,11 +17,11 @@ public class Recipe {
         this.id = id;
     }
 
-    public Recipe(String name, String image, String id, String preperation, String ingredients) {
+    public Recipe(String name, String image, String id, String preparation_process, String ingredients) {
         this.name = name;
         this.image = image;
         this.id = id;
-        this.preperation = preperation;
+        this.preparation_process = preparation_process;
         this.ingredients = ingredients;
     }
 
@@ -49,12 +49,12 @@ public class Recipe {
         this.id = id;
     }
 
-    public String getPreperation() {
-        return preperation;
+    public String getPreparation_process() {
+        return preparation_process;
     }
 
-    public void setPreperation(String preperation) {
-        this.preperation = preperation;
+    public void setPreparation_process(String preparation_process) {
+        this.preparation_process = preparation_process;
     }
 
     public String getIngredients() {
@@ -70,7 +70,7 @@ public class Recipe {
     }
 
     public List<String> getPreparationList(){
-        return strToList(preperation);
+        return strToList(preparation_process);
     }
 
     private List<String> strToList(String str) {

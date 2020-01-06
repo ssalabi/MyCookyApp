@@ -14,19 +14,20 @@
         app:srcCompat="@drawable/ic_menu_camera" />
 
     <TextView
-        android:layout_marginTop="20dp"
         android:id="@+id/recipe_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_weight="1"
-        android:text="recipee_name" />
+        android:text="recipee_name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-    <TextView
+    <!--<TextView
         android:layout_marginTop="20dp"
         android:id="@+id/recipe_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="recipe_id" />
+        android:text="recipe_id" />-->
 
 </LinearLayout>

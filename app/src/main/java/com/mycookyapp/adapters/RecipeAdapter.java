@@ -44,7 +44,7 @@ public class RecipeAdapter extends RecyclerView.Adapter {
 
         MyViewHolder myHolder = ((MyViewHolder) holder);
         myHolder.name.setText(name);
-        myHolder.id.setText(id);
+//        myHolder.id.setText(id);
         ImageView image = myHolder.image;
 
         Picasso.get().load(recipes.get(position).getImage())
@@ -68,13 +68,13 @@ public class RecipeAdapter extends RecyclerView.Adapter {
         private View layout;
         private ImageView image;
         public TextView name;
-        public TextView id;
+//        public TextView id;
 
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.recipe_name);
-            id = itemView.findViewById(R.id.recipe_id);
+//            id = itemView.findViewById(R.id.recipe_id);
             image = itemView.findViewById(R.id.recipe_image);
             layout = itemView.findViewById(R.id.recipe_layout);
 

@@ -13,33 +13,33 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class IngridiensAdapter extends RecyclerView.Adapter {
+public class PreparationsAdapter extends RecyclerView.Adapter {
 
     private Context context;
-    private List<String> ingridients;
+    private List<String> preparations;
 
-    public IngridiensAdapter(List<String> ingridients, Context context) {
-        this.ingridients = ingridients;
+    public PreparationsAdapter(Context context, List<String> preparations) {
         this.context = context;
+        this.preparations = preparations;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater mInflater = LayoutInflater.from(context);
-        View view = mInflater.inflate(R.layout.ingridient_row, parent, false);
+        View view = mInflater.inflate(R.layout.preparations_row, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         MyViewHolder myHolder = ((MyViewHolder) holder);
-        myHolder.name.setText(ingridients.get(position));
+        myHolder.name.setText(preparations.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return ingridients.size();
+        return preparations.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
@@ -48,7 +48,7 @@ public class IngridiensAdapter extends RecyclerView.Adapter {
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.ingridient_text);
+            name = itemView.findViewById(R.id.preparation_text);
         }
     }
 }

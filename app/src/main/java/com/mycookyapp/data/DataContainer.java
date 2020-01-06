@@ -27,6 +27,12 @@ public class DataContainer {
         return recipe.getIngrediansList();
     }
 
+    public List<String> getPreparations(String id) {
+        Recipe recipe = findWithId(id);
+        return recipe.getPreparationList();
+    }
+
+
     private Recipe findWithId(String id){
         for (Recipe recipe: recipes) {
             if(recipe.getId().equals(id)){
@@ -47,6 +53,8 @@ public class DataContainer {
     public void updateRecipe(Recipe recipe) {
         Recipe myRecipe = findWithId(recipe.getId());
         myRecipe.setIngredients(recipe.getIngredients());
-        myRecipe.setPreperation(recipe.getPreperation());
+        myRecipe.setPreparation_process(recipe.getPreparation_process());
     }
+
+
 }

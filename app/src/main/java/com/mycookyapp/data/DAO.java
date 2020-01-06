@@ -1,6 +1,7 @@
 package com.mycookyapp.data;
 
 
+import com.mycookyapp.ui.RecipeDetailsActivity;
 import com.mycookyapp.web.AzureHelper;
 
 import java.util.List;
@@ -67,6 +68,16 @@ public class DAO {
         }
     }
 
+    public void getPraparation(String id, DAOListener daoListener) {
+        this.daoListener = daoListener;
+        List<String> praparations = container.getPreparations(id);
+        if(praparations == null){
+            azureHelper.getRecipeDetails(azureListener, id);
+        } else {
+            daoListener.onPreparationsReady(praparations);
+        }
+    }
+
     public String getImageUrl(String id) {
 //        return mock.getImageUrl(id);
         return container.getImageUrl(id);
@@ -77,6 +88,7 @@ public class DAO {
     //    return mock.getNameRecipe(id);
         return container.getNameRecipe(id);
     }
+
 
 
 
