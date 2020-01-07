@@ -38,8 +38,9 @@
             android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="#FF5722"
             android:text="Login" />
 
         <TextView
@@ -63,8 +64,11 @@
         android:layout_centerVertical="true" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/logo2"
         android:layout_width="match_parent"
-        android:layout_height="201dp"
-        app:srcCompat="@drawable/logo" />
+        android:layout_height="163dp"
+        android:layout_above="@id/progressBar"
+        android:layout_marginBottom="69dp"
+        app:srcCompat="@drawable/logo2" />
+
 </RelativeLayout>

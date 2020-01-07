@@ -47,8 +47,9 @@
             android:id="@+id/radioGender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="#FF5722"
             android:orientation="horizontal">
 
             <RadioButton
@@ -71,8 +72,9 @@
             android:id="@+id/buttonRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="#FF5722"
             android:text="Register" />
 
         <TextView
@@ -102,6 +104,6 @@
         android:layout_alignParentRight="true"
         android:layout_marginEnd="-4dp"
         android:layout_marginRight="-4dp"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/logo2" />
 
 </RelativeLayout>

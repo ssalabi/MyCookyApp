@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#80F11E1E"
+    android:background="#90FF5722"
     tools:context=".screens.AccountFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -20,6 +20,8 @@
             android:layout_marginStart="96dp"
             android:layout_marginTop="264dp"
             android:text="email"
+            android:textColor="#FA0E0404"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,6 +31,8 @@
             android:layout_height="22dp"
             android:layout_marginTop="68dp"
             android:text="username"
+            android:textColor="#090505"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/text_email"
             app:layout_constraintTop_toBottomOf="@+id/text_email" />
 
@@ -39,39 +43,56 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="72dp"
             android:text="gender"
+            android:textColor="#110B0B"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/text_user_name"
             app:layout_constraintTop_toBottomOf="@+id/text_user_name" />
 
         <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="148dp"
+            android:id="@+id/login_icon"
+            android:layout_width="270dp"
+            android:layout_height="178dp"
+            android:layout_marginStart="64dp"
+            android:foregroundGravity="center"
+            android:src="@android:drawable/ic_dialog_email"
             app:layout_constraintBottom_toTopOf="@+id/text_email"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.451"
-            android:src="@android:drawable/ic_dialog_email"
-            />
+            app:layout_constraintVertical_bias="0.186"
+            app:srcCompat="@drawable/profile_icon"
+            tools:srcCompat="@drawable/profile_icon" />
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="260dp"
+            android:layout_width="51dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="256dp"
             android:src="@android:drawable/ic_dialog_email"
             app:layout_constraintEnd_toStartOf="@+id/text_email"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/imageView4"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="356dp"
+            android:layout_width="45dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="344dp"
             android:src="@android:drawable/ic_menu_view"
             app:layout_constraintEnd_toStartOf="@+id/text_user_name"
+            app:layout_constraintHorizontal_bias="0.372"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/login_icon2"
+            tools:srcCompat="@drawable/login_icon2" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="51dp"
+            android:layout_height="46dp"
+            android:layout_marginTop="440dp"
+            android:src="@drawable/gender"
+            app:layout_constraintStart_toStartOf="@+id/imageView4"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

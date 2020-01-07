@@ -6,10 +6,10 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:layout_marginTop="20dp"
         android:id="@+id/recipe_image"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="75dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
         android:layout_weight="1"
         app:srcCompat="@drawable/ic_menu_camera" />
 
@@ -17,10 +17,12 @@
         android:id="@+id/recipe_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:layout_weight="1"
         android:text="recipee_name"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#0F0606"
+        android:textSize="20dp" />
 
     <!--<TextView
         android:layout_marginTop="20dp"

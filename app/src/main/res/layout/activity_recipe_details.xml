@@ -27,15 +27,21 @@
                 android:id="@+id/details_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="75dp" />
+                android:layout_gravity="center"
+                android:layout_marginBottom="75dp"
+                android:gravity="center"
+                android:text="name"
+                android:textColor="#000000"
+                android:textSize="36sp" />
 
             <TextView
                 android:id="@+id/ingredients_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ingredients:"
                 android:layout_marginBottom="50dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:text="Ingredients:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="24sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/details_ingredients"
@@ -49,21 +55,22 @@
                 android:id="@+id/preparation_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="25dp"
                 android:text="Preparation:"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="24sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/details_preparation"
                 android:layout_width="300dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="25dp"
                 android:layout_height="wrap_content" />
 
             <Button
                 android:id="@+id/details_start"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/ic_launcher_background"
+                android:background="?attr/colorError"
                 android:text="start" />
 
         </LinearLayout>
