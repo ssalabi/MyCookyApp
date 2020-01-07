@@ -115,7 +115,7 @@ public class DAO {
             daoListener.onStartReady();
         }
     }
-
+//
     public interface DAOListener{
         void onRecipesReady(List<Recipe> recipes);
         void onRecipeDetailsReady(Recipe recipe);
